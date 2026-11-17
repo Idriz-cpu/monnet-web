@@ -1,0 +1,26 @@
+{
+  "_hinweis": "PLATZHALTER-PREISE: bitte durch echte MON-NET-Festpreise ersetzen. Alle Preise in EUR inkl. MwSt., inkl. Montage und Inbetriebnahme.",
+  "anzeigen": true,
+  "pakete": [
+    { "kw": 6, "name": "Kompakt 6 kW", "preis": 21900 },
+    { "kw": 9, "name": "Standard 9 kW", "preis": 25900 },
+    { "kw": 12, "name": "Plus 12 kW", "preis": 29900 },
+    { "kw": 16, "name": "Max 16 kW", "preis": 35900 }
+  ],
+  "imPaketEnthalten": [
+    "Luft-Wasser-Wärmepumpe (COP ≥ 3,1 bei A7/W35, förderfähig)",
+    "Warmwasserspeicher und Pufferspeicher",
+    "Montage, Hydraulik, Elektroanschluss und Inbetriebnahme",
+    "Antrag auf Klimabonus und Anmeldung durch MON-NET"
+  ],
+  "wattProM2": { "neubau": 35, "saniert": 55, "teilsaniert": 75, "unsaniert": 100 },
+  "warmwasserKwProPerson": 0.25,
+  "aufpreisHeizkoerper": 1500,
+  "demontage": { "oel": 2500, "gas": 1200, "strom": 800, "andere": 1500, "keine": 0 },
+  "foerderung": {
+    "klimabonusErsatz": 10000,
+    "klimabonusMitTripartite": 12000,
+    "klimabonusNeubau": 0,
+    "hinweis": "Geschätzter Klimabonus (Klimabonus Wunnen) für den Ersatz einer fossilen oder elektrischen Heizung im Einfamilienhaus. Der genaue Betrag wird vor Auftrag mit dem Simulator der Klima-Agence geprüft."
+  }
+}

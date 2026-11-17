@@ -11,7 +11,7 @@ export const company = {
 };
 
 export const services = [
-  { slug: 'photovoltaik', title: 'Photovoltaik', icon: '☀️', short: 'Planung, Montage und Inbetriebnahme von PV-Anlagen inkl. Speicher und Förderberatung.', quote: 'pv' },
+  { slug: 'photovoltaik', title: 'Photovoltaik', icon: '☀️', short: 'Planung, Montage und Inbetriebnahme von PV-Anlagen inkl. Speicher und Förderberatung.' },
   { slug: 'waermepumpen', title: 'Heizsysteme & Wärmepumpen', icon: '🔥', short: 'Effiziente Wärmepumpen für Neubau und Sanierung, inklusive Förderantrag.', quote: 'wp' },
   { slug: 'hkls', title: 'Heizung, Klima, Lüftung, Sanitär', icon: '💧', short: 'Komplette Haustechnik aus einer Hand.' },
   { slug: 'gebaeudesicherheit', title: 'Gebäudesicherheit', icon: '🛡️', short: 'Zutrittskontrolle, Videoüberwachung, Einbruch- und Brandmeldetechnik.' },

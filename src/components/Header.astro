@@ -7,13 +7,13 @@ import { nav } from '../data/site';
     <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
       {nav.map((n) => <a href={n.href} class="hover:text-brand-600">{n.label}</a>)}
       <a href="/fr/" class="text-slate-500 hover:text-brand-600">FR</a>
-      <a href="/preisanfrage/" class="rounded-full bg-accent-400 px-4 py-2 font-semibold text-brand-900 hover:bg-accent-500">Preisanfrage</a>
+      <a href="/preisanfrage/" class="rounded-full bg-accent-400 px-4 py-2 font-semibold text-brand-900 hover:bg-accent-500">Wärmepumpe konfigurieren</a>
     </nav>
     <details class="md:hidden relative">
       <summary class="list-none cursor-pointer p-2 text-2xl" aria-label="Menü">☰</summary>
       <div class="absolute right-0 mt-2 w-56 rounded-xl border bg-white p-3 shadow-lg flex flex-col gap-2">
         {nav.map((n) => <a href={n.href} class="py-1">{n.label}</a>)}
-        <a href="/preisanfrage/" class="rounded-full bg-accent-400 px-4 py-2 text-center font-semibold text-brand-900">Preisanfrage</a>
+        <a href="/preisanfrage/" class="rounded-full bg-accent-400 px-4 py-2 text-center font-semibold text-brand-900">Wärmepumpe konfigurieren</a>
       </div>
     </details>
   </div>
