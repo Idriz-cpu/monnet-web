@@ -1,0 +1,220 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { pricing } from '../../data/pricing';
+const opt = (v: string, l: string) => ({ v, l });
+---
+<Layout title="Online-Preisanfrage Photovoltaik & Wärmepumpe" description="Unverbindliche Online-Preisanfrage für PV-Anlagen und Wärmepumpen in Luxemburg und Deutschland.">
+  <section class="bg-brand-900 text-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold">Online-Preisanfrage</h1>
+      <p class="mt-3 text-brand-100">In 2 Minuten zur unverbindlichen Preisindikation für Ihre PV-Anlage oder Wärmepumpe.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 -mt-6">
+    <form id="qf" name="preisanfrage" method="POST" action="/preisanfrage/danke/" data-netlify="true" netlify-honeypot="bot-field"
+      class="rounded-2xl bg-white shadow-xl border border-slate-200 p-6 md:p-10">
+      <input type="hidden" name="form-name" value="preisanfrage" />
+      <input type="hidden" name="schaetzung" id="schaetzung" />
+      <p class="hidden"><label>Nicht ausfüllen: <input name="bot-field" /></label></p>
+
+      <div class="mb-8">
+        <div class="flex justify-between text-xs font-medium text-slate-500"><span>Produkt</span><span>Gebäude</span><span>Details</span><span>Kontakt</span></div>
+        <div class="mt-2 h-2 rounded-full bg-slate-100"><div id="bar" class="h-2 rounded-full bg-accent-400 transition-all" style="width:25%"></div></div>
+      </div>
+
+      <!-- Schritt 1 -->
+      <fieldset data-step="1">
+        <legend class="text-xl font-bold text-brand-900">Wofür möchten Sie ein Angebot?</legend>
+        <div class="mt-5 grid sm:grid-cols-3 gap-4">
+          {[opt('pv','☀️ Photovoltaik'), opt('wp','🔥 Wärmepumpe'), opt('beides','☀️🔥 Beides')].map((o) => (
+            <label class="cursor-pointer rounded-xl border-2 border-slate-200 p-5 text-center font-semibold has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+              <input type="radio" name="produkt" value={o.v} class="sr-only" required /> {o.l}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <!-- Schritt 2 -->
+      <fieldset data-step="2" class="hidden space-y-5">
+        <legend class="text-xl font-bold text-brand-900">Ihr Gebäude</legend>
+        <label class="block">Gebäudeart
+          <select name="gebaeude" required class="mt-1 w-full rounded-lg border-slate-300 border p-2.5">
+            <option value="">Bitte wählen</option><option>Einfamilienhaus</option><option>Doppelhaushälfte / Reihenhaus</option><option>Mehrfamilienhaus</option><option>Gewerbe</option>
+          </select>
+        </label>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="block">Land
+            <select name="land" required class="mt-1 w-full rounded-lg border-slate-300 border p-2.5"><option value="LU">Luxemburg</option><option value="DE">Deutschland</option></select>
+          </label>
+          <label class="block">PLZ / Ort
+            <input name="ort" required placeholder="z. B. L-6690 Moersdorf" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" />
+          </label>
+        </div>
+        <label class="block">Eigentum?
+          <select name="eigentum" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5"><option>Eigentümer</option><option>Mieter</option><option>Verwaltung / Syndic</option></select>
+        </label>
+      </fieldset>
+
+      <!-- Schritt 3 -->
+      <fieldset data-step="3" class="hidden space-y-8">
+        <div data-for="pv" class="space-y-5">
+          <h3 class="text-xl font-bold text-brand-900">☀️ Photovoltaik</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="block">Dachform
+              <select name="pv_dach" data-req class="mt-1 w-full rounded-lg border-slate-300 border p-2.5">
+                <option value="satteldach">Satteldach</option><option value="flachdach">Flachdach</option><option value="pultdach">Pultdach</option><option value="andere">Andere</option>
+              </select>
+            </label>
+            <label class="block">Ausrichtung
+              <select name="pv_ausrichtung" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5"><option>Süd</option><option>Ost/West</option><option>Nord</option><option>Weiß nicht</option></select>
+            </label>
+            <label class="block">Nutzbare Dachfläche (m²)
+              <input type="number" name="pv_flaeche" min="10" max="2000" data-req placeholder="z. B. 50" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" />
+            </label>
+            <label class="block">Stromverbrauch pro Jahr (kWh)
+              <input type="number" name="pv_verbrauch" min="500" max="200000" data-req placeholder="z. B. 4500" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" />
+            </label>
+          </div>
+          <div class="flex flex-wrap gap-6">
+            <label class="flex items-center gap-2"><input type="checkbox" name="pv_speicher" value="ja" /> Batteriespeicher</label>
+            <label class="flex items-center gap-2"><input type="checkbox" name="pv_wallbox" value="ja" /> Wallbox fürs E-Auto</label>
+          </div>
+        </div>
+
+        <div data-for="wp" class="space-y-5">
+          <h3 class="text-xl font-bold text-brand-900">🔥 Wärmepumpe</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="block">Zustand des Gebäudes
+              <select name="wp_zustand" data-req class="mt-1 w-full rounded-lg border-slate-300 border p-2.5">
+                <option value="neubau">Neubau / Passivhaus</option><option value="saniert">Saniert (gedämmt, neue Fenster)</option><option value="unsaniert">Unsaniert / Altbau</option>
+              </select>
+            </label>
+            <label class="block">Beheizte Wohnfläche (m²)
+              <input type="number" name="wp_flaeche" min="30" max="3000" data-req placeholder="z. B. 160" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" />
+            </label>
+            <label class="block">Aktuelle Heizung
+              <select name="wp_heizung" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5">
+                <option value="oel">Öl</option><option value="gas">Gas</option><option value="strom">Strom / Nachtspeicher</option><option value="andere">Andere</option><option value="keine">Keine (Neubau)</option>
+              </select>
+            </label>
+            <label class="block">Wärmeverteilung
+              <select name="wp_verteilung" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5">
+                <option value="fussboden">Fußbodenheizung</option><option value="gemischt">Gemischt</option><option value="heizkoerper">Heizkörper</option>
+              </select>
+            </label>
+            <label class="block">Personen im Haushalt
+              <input type="number" name="wp_personen" min="1" max="20" value="3" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" />
+            </label>
+          </div>
+          <label class="flex items-center gap-2"><input type="checkbox" name="wp_warmwasser" value="ja" checked /> Warmwasser ebenfalls über die Wärmepumpe</label>
+        </div>
+
+        <label class="block">Gewünschter Zeitraum
+          <select name="zeitraum" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5"><option>So bald wie möglich</option><option>In 3–6 Monaten</option><option>In 6–12 Monaten</option><option>Nur informieren</option></select>
+        </label>
+      </fieldset>
+
+      <!-- Schritt 4 -->
+      <fieldset data-step="4" class="hidden space-y-5">
+        <div id="estimate" class="hidden rounded-xl bg-eco-500/10 border border-eco-500/30 p-5">
+          <div class="text-sm font-semibold text-eco-500 uppercase tracking-wide">Ihre unverbindliche Preisindikation</div>
+          <div id="estimate-body" class="mt-2 space-y-1"></div>
+          <p class="mt-3 text-xs text-slate-500">Richtwert vor Förderung, inkl. Montage. Den genauen Preis erhalten Sie nach einer kostenlosen Vor-Ort-Besichtigung. In Luxemburg sind über die Klima-Agence hohe Förderungen möglich, wir beraten Sie gern dazu.</p>
+        </div>
+        <legend class="text-xl font-bold text-brand-900">Wohin dürfen wir Ihr Angebot schicken?</legend>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="block">Vor- und Nachname<input name="name" required class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" /></label>
+          <label class="block">E-Mail<input type="email" name="email" required class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" /></label>
+          <label class="block">Telefon<input type="tel" name="telefon" required class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" /></label>
+          <label class="block">Straße & Hausnummer<input name="strasse" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5" /></label>
+        </div>
+        <label class="block">Nachricht (optional)<textarea name="nachricht" rows="3" class="mt-1 w-full rounded-lg border-slate-300 border p-2.5"></textarea></label>
+        <label class="flex items-start gap-2 text-sm"><input type="checkbox" name="datenschutz" required class="mt-1" /> <span>Ich bin einverstanden, dass MON-NET meine Angaben zur Bearbeitung der Anfrage speichert und mich kontaktiert (<a href="/datenschutz/" class="underline">Datenschutz</a>).</span></label>
+      </fieldset>
+
+      <div class="mt-8 flex justify-between">
+        <button type="button" id="back" class="invisible rounded-full px-6 py-3 font-semibold text-slate-600 hover:bg-slate-100">← Zurück</button>
+        <button type="button" id="next" class="rounded-full bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">Weiter →</button>
+        <button type="submit" id="submit" class="hidden rounded-full bg-accent-400 px-6 py-3 font-semibold text-brand-900 hover:bg-accent-500">Anfrage absenden</button>
+      </div>
+    </form>
+  </section>
+
+  <script define:vars={{ pricing }}>
+    const f = document.getElementById('qf');
+    const steps = [...f.querySelectorAll('[data-step]')];
+    const bar = document.getElementById('bar');
+    const btnNext = document.getElementById('next'), btnBack = document.getElementById('back'), btnSubmit = document.getElementById('submit');
+    let cur = 0;
+
+    const pre = new URLSearchParams(location.search).get('typ');
+    if (pre) { const r = f.querySelector(`input[name=produkt][value=${pre}]`); if (r) r.checked = true; }
+
+    const product = () => f.produkt.value;
+    const eur = (n) => Math.round(n / 100) * 100;
+    const fmt = (n) => eur(n).toLocaleString('de-DE') + ' €';
+
+    function applyProduct() {
+      const p = product();
+      f.querySelectorAll('[data-for]').forEach((el) => {
+        const on = p === 'beides' || el.dataset.for === p;
+        el.classList.toggle('hidden', !on);
+        el.querySelectorAll('[data-req]').forEach((i) => (i.required = on));
+      });
+    }
+
+    function show(i) {
+      cur = i;
+      steps.forEach((s, j) => s.classList.toggle('hidden', j !== i));
+      bar.style.width = ((i + 1) / steps.length) * 100 + '%';
+      btnBack.classList.toggle('invisible', i === 0);
+      btnNext.classList.toggle('hidden', i === steps.length - 1);
+      btnSubmit.classList.toggle('hidden', i !== steps.length - 1);
+      if (i === 2) applyProduct();
+      if (i === 3) estimate();
+      f.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function valid(step) {
+      for (const el of step.querySelectorAll('input,select,textarea')) {
+        if (el.closest('.hidden') && el.closest('.hidden') !== step) continue;
+        if (!el.checkValidity()) { el.reportValidity(); return false; }
+      }
+      return true;
+    }
+
+    function estimate() {
+      const lines = [], summary = [];
+      const P = pricing, s = P.spread;
+      const p = product();
+      if (p === 'pv' || p === 'beides') {
+        const area = +f.pv_flaeche.value, cons = +f.pv_verbrauch.value;
+        let kwp = Math.min(area / P.pv.m2PerKwp, Math.max(cons / 1000 * 1.2, P.pv.minKwp));
+        kwp = Math.max(P.pv.minKwp, Math.min(P.pv.maxKwp, Math.round(kwp * 10) / 10));
+        const rate = P.pv.eurPerKwp.find((t) => kwp <= t.upTo).eur;
+        let cost = kwp * rate * (1 + (P.pv.roofSurcharge[f.pv_dach.value] || 0));
+        const bat = f.pv_speicher.checked ? Math.round(kwp) : 0;
+        cost += bat * P.pv.batteryEurPerKwh + (f.pv_wallbox.checked ? P.pv.wallboxEur : 0);
+        lines.push(`<div><b>PV-Anlage ca. ${kwp.toLocaleString('de-DE')} kWp</b>${bat ? ` + ${bat} kWh Speicher` : ''}: <b>${fmt(cost * (1 - s))} – ${fmt(cost * (1 + s))}</b></div>`);
+        summary.push(`PV ${kwp} kWp${bat ? ' + ' + bat + ' kWh' : ''}: ${eur(cost * (1 - s))}–${eur(cost * (1 + s))} EUR`);
+      }
+      if (p === 'wp' || p === 'beides') {
+        const kw = Math.max(4, Math.round(+f.wp_flaeche.value * P.wp.wattPerM2[f.wp_zustand.value] / 1000));
+        let cost = P.wp.baseEur + kw * P.wp.eurPerKw + (P.wp.radiatorSurcharge[f.wp_verteilung.value] || 0)
+          + (P.wp.removalEur[f.wp_heizung.value] || 0) + (f.wp_warmwasser.checked ? P.wp.hotWaterEur : 0);
+        lines.push(`<div><b>Wärmepumpe ca. ${kw} kW</b>: <b>${fmt(cost * (1 - s))} – ${fmt(cost * (1 + s))}</b></div>`);
+        summary.push(`WP ${kw} kW: ${eur(cost * (1 - s))}–${eur(cost * (1 + s))} EUR`);
+      }
+      document.getElementById('schaetzung').value = summary.join(' | ');
+      if (P.showEstimate && lines.length) {
+        document.getElementById('estimate-body').innerHTML = lines.join('');
+        document.getElementById('estimate').classList.remove('hidden');
+      }
+    }
+
+    btnNext.addEventListener('click', () => { if (valid(steps[cur])) show(cur + 1); });
+    btnBack.addEventListener('click', () => show(cur - 1));
+    show(0);
+  </script>
+</Layout>

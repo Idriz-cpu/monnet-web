@@ -1,0 +1,24 @@
+---
+import { company } from '../data/site';
+---
+<footer class="bg-brand-900 text-slate-300 mt-20">
+  <div class="mx-auto max-w-7xl px-4 py-12 grid gap-8 md:grid-cols-4 text-sm">
+    <div>
+      <div class="font-extrabold text-xl text-white">MON-NET</div>
+      <p class="mt-2">{company.claim}</p>
+    </div>
+    {company.locations.map((l) => (
+      <div>
+        <div class="font-semibold text-white">{l.firm}</div>
+        <p>{l.street}<br />{l.city}<br /><a href={`tel:${l.phone.replace(/\s/g, '')}`} class="hover:text-white">{l.phone}</a></p>
+      </div>
+    ))}
+    <div>
+      <div class="font-semibold text-white">Kontakt</div>
+      <p><a href={`mailto:${company.email}`} class="hover:text-white">{company.email}</a></p>
+      <p class="mt-2"><a href="/datenschutz/" class="hover:text-white">Datenschutz</a> · <a href="/impressum/" class="hover:text-white">Impressum</a></p>
+      <p class="mt-2">MON-NET Group: <a href="https://rimon.lu" class="hover:text-white">rimon.lu</a> · <a href="https://futureinsun.eu" class="hover:text-white">futureinsun.eu</a></p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-4 text-center text-xs">© {new Date().getFullYear()} MON-NET S.A.</div>
+</footer>

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { company, services } from '../data/site';
+---
+<Layout title="Gebäudetechnik, Photovoltaik & Wärmepumpen">
+  <section class="bg-gradient-to-br from-brand-900 via-brand-700 to-brand-500 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="uppercase tracking-widest text-accent-400 text-sm font-semibold">Seit 2012 · Luxemburg & Deutschland</p>
+        <h1 class="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">{company.claim}</h1>
+        <p class="mt-5 text-lg text-brand-100">Von Photovoltaik und Wärmepumpen über Sicherheitstechnik bis zum Rechenzentrum: Wir planen, bauen und betreuen Ihre Gebäudetechnik.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/preisanfrage/" class="rounded-full bg-accent-400 px-6 py-3 font-semibold text-brand-900 hover:bg-accent-500">Online-Preisanfrage starten</a>
+          <a href="/kontakt/" class="rounded-full border border-white/40 px-6 py-3 font-semibold hover:bg-white/10">Beratungstermin vereinbaren</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <a href="/preisanfrage/?typ=pv" class="rounded-2xl bg-white/10 p-6 hover:bg-white/20 transition">
+          <div class="text-4xl">☀️</div><div class="mt-3 font-bold text-lg">Photovoltaik</div>
+          <div class="text-sm text-brand-100">Preis in 2 Minuten anfragen</div>
+        </a>
+        <a href="/preisanfrage/?typ=wp" class="rounded-2xl bg-white/10 p-6 hover:bg-white/20 transition">
+          <div class="text-4xl">🔥</div><div class="mt-3 font-bold text-lg">Wärmepumpe</div>
+          <div class="text-sm text-brand-100">Preis in 2 Minuten anfragen</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold text-brand-900">Unsere Leistungen</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <a href={`/leistungen/${s.slug}/`} class="group rounded-2xl border border-slate-200 p-6 hover:border-brand-500 hover:shadow-lg transition">
+          <div class="text-3xl">{s.icon}</div>
+          <h3 class="mt-3 font-semibold text-lg group-hover:text-brand-600">{s.title}</h3>
+          <p class="mt-2 text-sm text-slate-600">{s.short}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-brand-50">
+    <div class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-3 gap-8 text-center">
+      <div><div class="text-4xl font-extrabold text-brand-700">2012</div><div class="mt-1 text-slate-600">gegründet</div></div>
+      <div><div class="text-4xl font-extrabold text-brand-700">LU + DE</div><div class="mt-1 text-slate-600">zwei Standorte</div></div>
+      <div><div class="text-4xl font-extrabold text-brand-700">bis 62,5 %</div><div class="mt-1 text-slate-600">staatliche Förderung möglich*</div></div>
+    </div>
+    <p class="pb-8 text-center text-xs text-slate-500">* je nach Programm der Klima-Agence, Stand bitte prüfen.</p>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold text-brand-900">Referenzen</h2>
+    <p class="mt-3 text-slate-600 max-w-2xl">Unter anderem RTL City (Sendezentrum) und ein IBM-Rechenzentrum. Offizieller Sponsor und Teilnehmer des POSTLAF 2024.</p>
+    <a href="/projekte/" class="mt-6 inline-block font-semibold text-brand-600 hover:underline">Alle Projekte ansehen →</a>
+  </section>
+</Layout>

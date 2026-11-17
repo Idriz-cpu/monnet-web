@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { company } from '../data/site';
+---
+<Layout title="Kontakt">
+  <section class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-2 gap-12">
+    <div>
+      <h1 class="text-4xl font-extrabold text-brand-900">Kontakt aufnehmen</h1>
+      <p class="mt-4 text-slate-600">Sie möchten direkt einen Preis für PV oder Wärmepumpe? Nutzen Sie unsere <a href="/preisanfrage/" class="text-brand-600 underline">Online-Preisanfrage</a>.</p>
+      {company.locations.map((l) => (
+        <div class="mt-8">
+          <div class="font-semibold text-lg">{l.firm} <span class="text-slate-400 font-normal">· {l.label}</span></div>
+          <p class="text-slate-600">{l.street}, {l.city}<br />Tel. <a href={`tel:${l.phone.replace(/\s/g, '')}`} class="text-brand-600">{l.phone}</a>{l.fax && <> · Fax {l.fax}</>}</p>
+        </div>
+      ))}
+      <p class="mt-8"><a href={`mailto:${company.email}`} class="text-brand-600 font-semibold">{company.email}</a></p>
+    </div>
+    <form name="kontakt" method="POST" action="/preisanfrage/danke/" data-netlify="true" netlify-honeypot="bot-field" class="rounded-2xl border border-slate-200 p-6 md:p-8 space-y-4 shadow-sm">
+      <input type="hidden" name="form-name" value="kontakt" />
+      <p class="hidden"><input name="bot-field" /></p>
+      <label class="block">Name<input name="name" required class="mt-1 w-full rounded-lg border border-slate-300 p-2.5" /></label>
+      <label class="block">E-Mail<input type="email" name="email" required class="mt-1 w-full rounded-lg border border-slate-300 p-2.5" /></label>
+      <label class="block">Telefon<input type="tel" name="telefon" class="mt-1 w-full rounded-lg border border-slate-300 p-2.5" /></label>
+      <label class="block">Nachricht<textarea name="nachricht" rows="5" required class="mt-1 w-full rounded-lg border border-slate-300 p-2.5"></textarea></label>
+      <label class="flex items-start gap-2 text-sm"><input type="checkbox" required class="mt-1" /> <span>Ich stimme der Verarbeitung meiner Daten gemäß <a href="/datenschutz/" class="underline">Datenschutz</a> zu.</span></label>
+      <button class="rounded-full bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700">Abschicken</button>
+    </form>
+  </section>
+</Layout>
