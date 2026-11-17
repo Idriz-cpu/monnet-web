@@ -1,11 +1,11 @@
 # MON-NET Webseite
 
-Neue Webseite für MON-NET (ersetzt die Webnode-Seite monnet.lu), mit Online-Preisanfrage für Photovoltaik und Wärmepumpen.
+Neue Webseite für MON-NET (ersetzt die Webnode-Seite monnet.lu), mit Wärmepumpen-Konfigurator für Luxemburg (Start nur Wärmepumpen LU).
 
 - Astro 5 + Tailwind CSS 4, statisch gebaut
-- Formulare über Netlify Forms (Benachrichtigung per E-Mail an info@mon-net.eu in den Netlify-Einstellungen aktivieren)
+- Formulare über `public/api/anfrage.php` (PHP `mail()` an info@mon-net.eu, läuft auf IONOS / netsite.lu)
 - Firmendaten & Leistungen: `src/data/site.ts`
-- Preis-Richtwerte für die Preisindikation: `src/data/pricing.ts` (aktuell Platzhalter!)
+- Wärmepumpen-Pakete, Preise und Klimabonus: `src/data/waermepumpe.json` (aktuell Platzhalter!)
 
 ```bash
 npm install
