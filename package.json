@@ -9,8 +9,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@netlify/blobs": "^10.7.13",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",
+    "nodemailer": "^7.0.13",
+    "pdf-lib": "^1.17.1",
     "tailwindcss": "^4.3.3"
   }
 }

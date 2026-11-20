@@ -1,8 +1,12 @@
 # Netlify veröffentlicht nur die Aktions-Landingpage (Ordner aktion/), nicht die Astro-Webseite.
+# Die Funktionen in netlify/functions erstellen aus jeder Anfrage einen Angebotsentwurf (siehe netlify/README.md).
 [build]
-  base = "aktion"
-  publish = "."
+  publish = "aktion"
   command = "echo 'Statische Seite, kein Build nötig'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/fr"
