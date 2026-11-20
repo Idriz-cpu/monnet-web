@@ -172,6 +172,41 @@
               <option value="weiß nicht" data-i18n="wn">weiß nicht</option>
             </select>
           </label>
+          <label class="f"><span data-i18n="warmwasser">Warmwasser heute</span> <span class="opt" data-i18n="optional">(optional)</span>
+            <select name="warmwasser">
+              <option value="" data-i18n="bitte">Bitte wählen</option>
+              <option value="Über die Heizung" data-i18n="ww1">Über die Heizung</option>
+              <option value="Elektrischer Boiler" data-i18n="ww2">Elektrischer Boiler</option>
+              <option value="Durchlauferhitzer" data-i18n="ww3">Durchlauferhitzer</option>
+              <option value="weiß nicht" data-i18n="wn">weiß nicht</option>
+            </select>
+          </label>
+          <label class="f"><span data-i18n="oeltank">Öltank</span> <span class="opt" data-i18n="nurOel">(nur bei Ölheizung)</span>
+            <select name="oeltank">
+              <option value="" data-i18n="bitte">Bitte wählen</option>
+              <option value="Im Keller" data-i18n="ot1">Im Keller</option>
+              <option value="Im Erdreich" data-i18n="ot2">Im Erdreich</option>
+              <option value="Kein Tank / schon entfernt" data-i18n="ot3">Kein Tank / schon entfernt</option>
+              <option value="weiß nicht" data-i18n="wn">weiß nicht</option>
+            </select>
+          </label>
+          <label class="f"><span data-i18n="pv">Photovoltaik-Anlage</span> <span class="opt" data-i18n="optional">(optional)</span>
+            <select name="photovoltaik">
+              <option value="" data-i18n="bitte">Bitte wählen</option>
+              <option value="Vorhanden" data-i18n="pv1">Vorhanden</option>
+              <option value="Geplant" data-i18n="pv2">Geplant</option>
+              <option value="Nein" data-i18n="pv3">Nein</option>
+            </select>
+          </label>
+          <label class="f"><span data-i18n="aufstell">Platz für das Außengerät</span> <span class="opt" data-i18n="optional">(optional)</span>
+            <select name="aufstellort">
+              <option value="" data-i18n="bitte">Bitte wählen</option>
+              <option value="Garten / Boden" data-i18n="au1">Garten / auf dem Boden</option>
+              <option value="Wandmontage" data-i18n="au2">An der Hauswand</option>
+              <option value="Flachdach / Garage" data-i18n="au3">Flachdach / Garage</option>
+              <option value="Bitte beraten" data-i18n="au4">Weiß nicht, bitte beraten</option>
+            </select>
+          </label>
           <label class="f"><span data-i18n="verbrauch">Jahresverbrauch</span> <span class="opt" data-i18n="optional">(optional)</span><input type="text" name="jahresverbrauch" data-i18n-ph="verbrauch_ph" placeholder="z. B. 2.500 l Öl oder 25.000 kWh Gas" /></label>
         </div>
 
@@ -202,6 +237,7 @@
         <div class="grid">
           <label class="photo"><span data-i18n="foto1">Heizraum / jetziger Heizkessel</span><input type="file" name="foto_heizraum" accept="image/*" /></label>
           <label class="photo"><span data-i18n="foto2">Typenschild der Heizung</span><input type="file" name="foto_typenschild" accept="image/*" /></label>
+          <label class="photo"><span data-i18n="foto4">Zählerschrank / Sicherungskasten</span><input type="file" name="foto_zaehlerschrank" accept="image/*" /></label>
           <label class="photo"><span data-i18n="foto3">Außenansicht, möglicher Platz für das Außengerät</span><input type="file" name="foto_aussen" accept="image/*" /></label>
         </div>
 
@@ -257,6 +293,7 @@
         s4: "Chauffage actuel", heizung: "Chauffage actuel", he1: "Mazout", he2: "Gaz naturel", he3: "Gaz liquide", he4: "Électrique / accumulation", he5: "Bois / pellets", he6: "Ancienne pompe à chaleur", he7: "Aucun (construction neuve)", sonst: "Autre",
         alter: "Âge du chauffage", optional: "(facultatif)", a1: "moins de 10 ans", a2: "10–20 ans", a3: "plus de 20 ans", wn: "je ne sais pas",
         verteilung: "Diffusion de chaleur", v1: "Radiateurs", v2: "Chauffage au sol", v3: "Mixte",
+        warmwasser: "Eau chaude aujourd'hui", ww1: "Par le chauffage", ww2: "Chauffe-eau électrique", ww3: "Chauffe-eau instantané", oeltank: "Citerne à mazout", nurOel: "(uniquement chauffage au mazout)", ot1: "À la cave", ot2: "Enterrée", ot3: "Pas de citerne / déjà retirée", pv: "Installation photovoltaïque", pv1: "Existante", pv2: "Prévue", pv3: "Non", aufstell: "Emplacement de l'unité extérieure", au1: "Jardin / au sol", au2: "Sur la façade", au3: "Toit plat / garage", au4: "Je ne sais pas, conseillez-moi", foto4: "Compteur / tableau électrique",
         verbrauch: "Consommation annuelle", verbrauch_ph: "p. ex. 2 500 l de mazout ou 25 000 kWh de gaz",
         s5: "Votre souhait", zeitrahmen: "Délai souhaité", z1: "Dès que possible", z2: "Dans 1 à 3 mois", z3: "Dans 3 à 6 mois", z4: "Dans 6 à 12 mois", z5: "Je m'informe d'abord",
         hersteller: "Fabricant préféré", egal: "Pas de préférence, conseillez-moi",
@@ -288,6 +325,7 @@
         s4: "Current heating", heizung: "Current heating", he1: "Heating oil", he2: "Natural gas", he3: "LPG", he4: "Electric / storage heaters", he5: "Wood / pellets", he6: "Old heat pump", he7: "None (new build)", sonst: "Other",
         alter: "Age of the heating", optional: "(optional)", a1: "under 10 years", a2: "10–20 years", a3: "over 20 years", wn: "don't know",
         verteilung: "Heat distribution", v1: "Radiators", v2: "Underfloor heating", v3: "Mixed",
+        warmwasser: "Hot water today", ww1: "Via the heating", ww2: "Electric water heater", ww3: "Instantaneous water heater", oeltank: "Oil tank", nurOel: "(oil heating only)", ot1: "In the basement", ot2: "Underground", ot3: "No tank / already removed", pv: "Solar PV system", pv1: "Installed", pv2: "Planned", pv3: "No", aufstell: "Space for the outdoor unit", au1: "Garden / on the ground", au2: "On the house wall", au3: "Flat roof / garage", au4: "Not sure, please advise", foto4: "Meter cabinet / fuse box",
         verbrauch: "Annual consumption", verbrauch_ph: "e.g. 2,500 l oil or 25,000 kWh gas",
         s5: "Your plans", zeitrahmen: "Desired time frame", z1: "As soon as possible", z2: "In 1–3 months", z3: "In 3–6 months", z4: "In 6–12 months", z5: "Just looking for information",
         hersteller: "Preferred manufacturer", egal: "No preference, please advise",
