@@ -6,7 +6,7 @@
   <title>–10 % auf Ihre Wärmepumpe | MON-NET Luxemburg</title>
   <meta name="description" content="Wärmepumpe in Luxemburg zum Festpreis inkl. Montage. Jetzt mit Code WP10 10 % sparen. Angaben eintragen, kostenloses Angebot erhalten." />
   <meta property="og:title" content="–10 % auf Ihre Wärmepumpe mit Code WP10 | MON-NET" />
-  <meta property="og:description" content="Festpreis inkl. Montage, Buderus oder Viessmann, Hilfe beim Klimabonus. Nur in Luxemburg, Anfrage bis 31.12.2026." />
+  <meta property="og:description" content="Festpreis inkl. Montage, Hilfe beim Klimabonus. Nur in Luxemburg, Anfrage bis 31.12.2026." />
   <meta property="og:image" content="/img/apple-touch-icon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
@@ -55,6 +55,22 @@
     .photo { border:1.5px dashed #cfcfcf; border-radius:12px; padding:12px; font-weight:600; font-size:15px; display:block; }
     .photo small { display:block; font-weight:400; color:var(--muted); font-size:13px; }
     .photo input { display:block; margin-top:8px; font-size:14px; max-width:100%; }
+    .prices { margin-bottom: 8px; }
+    .prices h2 { margin-top:0; }
+    .vat { display:inline-flex; border:1.5px solid var(--black); border-radius:999px; overflow:hidden; margin: 4px 0 14px; }
+    .vat label { white-space:nowrap; padding:7px 12px; font-weight:700; font-size:14px; cursor:pointer; }
+    .vat input { position:absolute; opacity:0; pointer-events:none; }
+    .vat label:has(input:checked) { background:var(--black); color:#fff; }
+    .ptable { width:100%; border-collapse:collapse; font-size:15px; }
+    .ptable th, .ptable td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+    .ptable th { font-size:13px; color:var(--muted); font-weight:600; }
+    .ptable td.num, .ptable th.num { text-align:right; white-space:nowrap; }
+    .ptable .old { color:var(--muted); text-decoration:line-through; font-size:13px; display:block; }
+    .ptable .new { color:var(--red); font-weight:800; font-size:17px; }
+    .ptable small { color:var(--muted); display:block; font-size:12px; }
+    .fine { font-size:13px; color:var(--muted); margin:10px 0 0; }
+    .bonus { background:#f3f8f3; border:1px solid #cfe3cf; border-radius:12px; padding:12px 14px; font-size:14px; margin-top:14px; }
+    .bonus strong { color:#1e6b2a; }
     .promo { display:flex; gap:14px; align-items:center; background:#fff3f3; border:1.5px solid #f6c1c3; border-radius:12px; padding:14px; margin-top:6px; flex-wrap:wrap; }
     .promo input { max-width: 180px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin-top:0; }
     .promo p { margin:0; font-size:14px; flex:1 1 240px; }
@@ -93,7 +109,6 @@
         <li data-i18n="usp2">Wir kümmern uns um den Antrag auf den Klimabonus</li>
         <li data-i18n="usp3">Ein Ansprechpartner aus der Region, von der Planung bis zur Wartung</li>
       </ul>
-      <p class="partners"><span data-i18n="partners">Unsere Herstellerpartner:</span> <strong>Buderus · Viessmann</strong></p>
     </div>
   </section>
 
@@ -104,6 +119,22 @@
         <input type="hidden" name="sprache" id="sprache" value="de" />
         <input type="hidden" name="quelle" id="quelle" value="" />
         <p class="hidden"><label>Nicht ausfüllen <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+        <div class="prices">
+          <h2><span data-i18n="p_h">Festpreise 2026, inklusive Montage</span></h2>
+          <p class="hint" data-i18n="p_hint">Komplettpaket: Luft-Wasser-Wärmepumpe mit Warmwasser- und Pufferspeicher, Verrohrung, Dämmung, Elektroanschluss und Inbetriebnahme.</p>
+          <div class="vat" role="radiogroup" aria-label="MwSt.">
+            <label><input type="radio" name="mwst" value="17 %" checked /><span data-i18n="p_v17">17 % MwSt.</span></label>
+            <label><input type="radio" name="mwst" value="3 % (TVA logement)" /><span data-i18n="p_v3">3 % TVA logement</span></label>
+          </div>
+          <table class="ptable">
+            <thead><tr><th data-i18n="p_c1">Leistung</th><th class="num" data-i18n="p_c2">Festpreis</th><th class="num" data-i18n="p_c3">Mit WP10</th></tr></thead>
+            <tbody id="ptbody"></tbody>
+          </table>
+          <p class="fine" data-i18n="p_fine">Richtpreise inkl. MwSt. Je nach Haus kommen hinzu: Betonfundament für das Außengerät, hydraulischer Abgleich, Demontage der Ölheizung mit Tank. Den verbindlichen Festpreis erhalten Sie nach der kostenlosen Besichtigung.</p>
+          <div class="bonus"><strong data-i18n="p_kb">Klimabonus: bis zu 12.000 € zurück.</strong> <span data-i18n="p_kbt">Für den Ersatz einer Öl-, Gas- oder Elektroheizung im Einfamilienhaus zahlt der Staat bei Bestellung bis 30.06.2027 bis zu 12.000 €, dazu 1.500 € für die Entfernung eines Öltanks. Wir helfen beim Antrag.</span></div>
+          <p class="fine" data-i18n="p_tva">3 % MwSt. (TVA logement) gilt für Ihren Hauptwohnsitz, wenn das Gebäude bei Arbeitsbeginn mindestens 10 Jahre alt ist. Für den direkten Abzug auf der Rechnung muss vor Arbeitsbeginn eine Genehmigung der Steuerverwaltung (AED) vorliegen, die wir mit Ihnen beantragen. Sonst können Sie sich die Differenz nachträglich erstatten lassen. Der Vorteil ist auf 50.000 € pro Wohnung begrenzt.</p>
+        </div>
 
         <h2><span class="n">1</span><span data-i18n="s1">Kontakt</span></h2>
         <div class="grid two">
@@ -222,6 +253,11 @@
               <option value="Nur informieren" data-i18n="z5">Ich informiere mich erst</option>
             </select>
           </label>
+          <label class="f"><span data-i18n="paket">Gewünschtes Paket</span>
+            <select name="paket" id="paket">
+              <option value="Bitte beraten" data-i18n="p_ber">Weiß nicht, bitte beraten</option>
+            </select>
+          </label>
           <label class="f"><span data-i18n="hersteller">Bevorzugter Hersteller</span>
             <select name="hersteller">
               <option value="Keine Präferenz" data-i18n="egal">Keine Präferenz, bitte beraten</option>
@@ -283,7 +319,6 @@
         usp1: "Prix fixe incluant le montage, la mise en service et le démontage de l'ancien chauffage",
         usp2: "Nous nous occupons de la demande Klimabonus",
         usp3: "Un seul interlocuteur dans la région, de l'étude à l'entretien",
-        partners: "Nos partenaires fabricants :",
         s1: "Contact", vorname: "Prénom", nachname: "Nom", telefon: "Téléphone", email: "E-mail",
         s2: "Adresse du bâtiment", s2hint: "L'action est valable uniquement pour les bâtiments au Luxembourg.",
         strasse: "Rue et numéro", plz: "Code postal", ort: "Localité",
@@ -293,6 +328,7 @@
         s4: "Chauffage actuel", heizung: "Chauffage actuel", he1: "Mazout", he2: "Gaz naturel", he3: "Gaz liquide", he4: "Électrique / accumulation", he5: "Bois / pellets", he6: "Ancienne pompe à chaleur", he7: "Aucun (construction neuve)", sonst: "Autre",
         alter: "Âge du chauffage", optional: "(facultatif)", a1: "moins de 10 ans", a2: "10–20 ans", a3: "plus de 20 ans", wn: "je ne sais pas",
         verteilung: "Diffusion de chaleur", v1: "Radiateurs", v2: "Chauffage au sol", v3: "Mixte",
+        p_h: "Prix fixes 2026, montage compris", p_hint: "Pack complet : pompe à chaleur air-eau avec ballon d'eau chaude et ballon tampon, tuyauterie, isolation, raccordement électrique et mise en service.", p_v17: "TVA 17 %", p_v3: "TVA 3 % logement", p_c1: "Puissance", p_c2: "Prix fixe", p_c3: "Avec WP10", p_fine: "Prix indicatifs TVA comprise. Selon la maison, s'ajoutent : socle en béton pour l'unité extérieure, équilibrage hydraulique, démontage du chauffage au mazout avec citerne. Vous recevez le prix fixe définitif après la visite gratuite.", p_kb: "Klimabonus : jusqu'à 12 000 € remboursés.", p_kbt: "Pour le remplacement d'un chauffage au mazout, au gaz ou électrique dans une maison unifamiliale, l'État verse jusqu'à 12 000 € pour toute commande jusqu'au 30.06.2027, plus 1 500 € pour l'enlèvement d'une citerne à mazout. Nous vous aidons pour la demande.", p_tva: "La TVA à 3 % (logement) s'applique à votre résidence principale si le bâtiment a au moins 10 ans au début des travaux. Pour l'appliquer directement sur la facture, un agrément de l'AED est nécessaire avant le début des travaux ; nous le demandons avec vous. Sinon, vous pouvez vous faire rembourser la différence par la suite. L'avantage est plafonné à 50 000 € par logement.", paket: "Pack souhaité", p_ber: "Je ne sais pas, conseillez-moi", p_est: "estimation", p_from: "dès",
         warmwasser: "Eau chaude aujourd'hui", ww1: "Par le chauffage", ww2: "Chauffe-eau électrique", ww3: "Chauffe-eau instantané", oeltank: "Citerne à mazout", nurOel: "(uniquement chauffage au mazout)", ot1: "À la cave", ot2: "Enterrée", ot3: "Pas de citerne / déjà retirée", pv: "Installation photovoltaïque", pv1: "Existante", pv2: "Prévue", pv3: "Non", aufstell: "Emplacement de l'unité extérieure", au1: "Jardin / au sol", au2: "Sur la façade", au3: "Toit plat / garage", au4: "Je ne sais pas, conseillez-moi", foto4: "Compteur / tableau électrique",
         verbrauch: "Consommation annuelle", verbrauch_ph: "p. ex. 2 500 l de mazout ou 25 000 kWh de gaz",
         s5: "Votre souhait", zeitrahmen: "Délai souhaité", z1: "Dès que possible", z2: "Dans 1 à 3 mois", z3: "Dans 3 à 6 mois", z4: "Dans 6 à 12 mois", z5: "Je m'informe d'abord",
@@ -315,7 +351,6 @@
         usp1: "Fixed price including installation, commissioning and removal of the old heating",
         usp2: "We take care of the Klimabonus application",
         usp3: "One local contact, from planning to maintenance",
-        partners: "Our manufacturer partners:",
         s1: "Contact", vorname: "First name", nachname: "Last name", telefon: "Phone", email: "Email",
         s2: "Address of the building", s2hint: "The offer is valid for buildings in Luxembourg only.",
         strasse: "Street and number", plz: "Postcode", ort: "Town",
@@ -325,6 +360,7 @@
         s4: "Current heating", heizung: "Current heating", he1: "Heating oil", he2: "Natural gas", he3: "LPG", he4: "Electric / storage heaters", he5: "Wood / pellets", he6: "Old heat pump", he7: "None (new build)", sonst: "Other",
         alter: "Age of the heating", optional: "(optional)", a1: "under 10 years", a2: "10–20 years", a3: "over 20 years", wn: "don't know",
         verteilung: "Heat distribution", v1: "Radiators", v2: "Underfloor heating", v3: "Mixed",
+        p_h: "Fixed prices 2026, installation included", p_hint: "Complete package: air-to-water heat pump with hot water and buffer tank, pipework, insulation, electrical connection and commissioning.", p_v17: "17 % VAT", p_v3: "3 % VAT (housing)", p_c1: "Output", p_c2: "Fixed price", p_c3: "With WP10", p_fine: "Guide prices incl. VAT. Depending on the house, the following may be added: concrete base for the outdoor unit, hydraulic balancing, removal of the oil heating and tank. You receive the binding fixed price after the free on-site visit.", p_kb: "Klimabonus: up to €12,000 back.", p_kbt: "For replacing an oil, gas or electric heating in a single-family house, the state pays up to €12,000 for orders placed by 30.06.2027, plus €1,500 for removing an oil tank. We help with the application.", p_tva: "The 3 % VAT rate (TVA logement) applies to your main residence if the building is at least 10 years old when works start. To apply it directly on the invoice, an approval from the tax authority (AED) is required before works start, which we request together with you. Otherwise you can claim the difference back later. The benefit is capped at €50,000 per home.", paket: "Preferred package", p_ber: "Not sure, please advise", p_est: "estimate", p_from: "from",
         warmwasser: "Hot water today", ww1: "Via the heating", ww2: "Electric water heater", ww3: "Instantaneous water heater", oeltank: "Oil tank", nurOel: "(oil heating only)", ot1: "In the basement", ot2: "Underground", ot3: "No tank / already removed", pv: "Solar PV system", pv1: "Installed", pv2: "Planned", pv3: "No", aufstell: "Space for the outdoor unit", au1: "Garden / on the ground", au2: "On the house wall", au3: "Flat roof / garage", au4: "Not sure, please advise", foto4: "Meter cabinet / fuse box",
         verbrauch: "Annual consumption", verbrauch_ph: "e.g. 2,500 l oil or 25,000 kWh gas",
         s5: "Your plans", zeitrahmen: "Desired time frame", z1: "As soon as possible", z2: "In 1–3 months", z3: "In 3–6 months", z4: "In 6–12 months", z5: "Just looking for information",
@@ -340,6 +376,7 @@
         e_req: "Please fill in all required fields and accept the privacy notice.", e_plz: "Please enter a Luxembourg postcode (4 digits).", e_size: "The photos are too large. Please send fewer or email them to us.", e_send: "Sending failed. Please try again or write to info@mon-net.eu.", sending: "Sending…"
       },
       de: {
+        p_est: "Schätzung",
         e_req: "Bitte füllen Sie alle Pflichtfelder aus und stimmen Sie dem Datenschutz zu.", e_plz: "Bitte geben Sie eine luxemburgische Postleitzahl an (4 Ziffern).", e_size: "Die Fotos sind zu groß. Bitte weniger Fotos senden oder per E-Mail schicken.", e_send: "Das Senden hat nicht geklappt. Bitte erneut versuchen oder an info@mon-net.eu schreiben.", sending: "Wird gesendet…"
       }
     };
@@ -368,6 +405,28 @@
     });
 
     var form = document.getElementById('wpform');
+    // Festpreise (inkl. Montage), netto in EUR. Quelle: MON-NET-Angebot 12 kW (2024) + 5 %, andere Größen aus Buderus-Listenpreisdifferenzen
+    var PAKETE = [
+      { kw: '7 kW', netto: 26747, info: '≈ 100–140 m²' },
+      { kw: '10 kW', netto: 29719, info: '≈ 140–190 m²' },
+      { kw: '12 kW', netto: 31130, info: '≥ 190 m²' }
+    ];
+    var RABATT = 0.10;
+    var nf = new Intl.NumberFormat(lang === 'en' ? 'en-GB' : lang === 'fr' ? 'fr-LU' : 'de-LU', { maximumFractionDigits: 0 });
+    var eur = function (n) { return (lang === 'en' ? '€' : '') + nf.format(Math.round(n / 100) * 100 - 10) + (lang === 'en' ? '' : ' €'); };
+    var pkSel = document.getElementById('paket');
+    PAKETE.forEach(function (p) { var o = document.createElement('option'); o.value = p.kw; o.textContent = p.kw + ' (' + p.info + ')'; pkSel.appendChild(o); });
+    function renderPrices() {
+      var satz = document.querySelector('input[name=mwst]:checked').value.indexOf('3') === 0 ? 1.03 : 1.17;
+      document.getElementById('ptbody').innerHTML = PAKETE.map(function (p) {
+        var b = p.netto * satz;
+        return '<tr><td><strong>' + p.kw + '</strong>' + (p.schaetzung ? ' <small>(' + D.p_est + ')</small>' : '') + '<small>' + p.info + '</small></td>' +
+          '<td class="num">' + eur(b) + '</td><td class="num"><span class="new">' + eur(b * (1 - RABATT)) + '</span></td></tr>';
+      }).join('');
+    }
+    renderPrices();
+    form.querySelectorAll('input[name=mwst]').forEach(function (r) { r.addEventListener('change', renderPrices); });
+
     document.getElementById('sprache').value = lang;
     var src = q.get('utm_source') || q.get('src') || (document.referrer ? new URL(document.referrer).hostname : 'direkt');
     if (q.get('utm_campaign')) src += ' / ' + q.get('utm_campaign');
