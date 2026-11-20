@@ -1,0 +1,25 @@
+# Netlify veröffentlicht nur die Aktions-Landingpage (Ordner aktion/), nicht die Astro-Webseite.
+[build]
+  base = "aktion"
+  publish = "."
+  command = "echo 'Statische Seite, kein Build nötig'"
+
+[[redirects]]
+  from = "/fr"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/fr/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/"
+  to = "/index.html"
+  status = 200
